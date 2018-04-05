@@ -1,0 +1,9 @@
+season: 2018
+chrome_log_path: /var/data/chrome.log
+adblock_path: /var/data/Adblock-Plus_v1.12.4.crx
+
+tmp_dir: /var/data/tmp
+
+s3:
+  bucket: mlb-dfs-2018
+  data: data
