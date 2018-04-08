@@ -35,8 +35,8 @@ class FanGraphsScraper(object):
             remove existing file if it exists
         """
         FULL_PATH = os.path.realpath(file_path)
-        if not os.path.exists(os.dirname(FULL_PATH)):
-            os.makedirs(os.dirname(FULL_PATH))
+        if not os.path.exists(os.path.dirname(FULL_PATH)):
+            os.makedirs(os.path.dirname(FULL_PATH))
         if os.path.exists(FULL_PATH):
             os.remove(FULL_PATH)
 
