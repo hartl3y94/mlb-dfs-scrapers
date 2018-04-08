@@ -72,7 +72,7 @@ class FanGraphsScraper(object):
         """
         logging.info("Downloading %s", table_name)
 
-        tmp_file = os.path.join(self.cfg['tmp_path'], table_name, FANGRAPHS_FILE)
+        tmp_file = os.path.join(self.cfg['tmp_dir'], table_name, FANGRAPHS_FILE)
         self.validate_target(tmp_file)
 
         # Create driver
