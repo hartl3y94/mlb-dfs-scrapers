@@ -29,7 +29,7 @@ class FanGraphsScraper(object):
         self.create_display()
 
     @staticmethod
-    def validate_target(file_path):
+    def validate_target(file_pah):
         """ Verify the target directory exists, and
             remove existing file if it exists
         """
@@ -64,7 +64,6 @@ class FanGraphsScraper(object):
         return webdriver.Chrome(
             chrome_options=options,
             service_args=['--log-path=%s' % log_path])
-
 
     def fetch(self, url, column_list, table_name):
         """ Main execution. Download data from url, parse
