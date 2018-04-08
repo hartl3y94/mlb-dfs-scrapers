@@ -4,7 +4,7 @@ from io import StringIO
 
 import boto3
 from pyvirtualdisplay import Display
-from selenium import Webdriver
+from selenium import webdriver
 
 from util.config import get_config
 
