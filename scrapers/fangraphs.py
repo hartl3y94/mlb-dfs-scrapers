@@ -5,6 +5,7 @@ import logging
 from io import StringIO
 
 import boto3
+import pandas as pd
 from pyvirtualdisplay import Display
 from selenium import webdriver
 
@@ -81,6 +82,9 @@ class FanGraphsScraper(object):
         driver = self.create_driver(tmp_file, chrome_path, adblock_path)
 
         # Download and wait for file
+        driver.get(url)
+        driver.execute_script(JAVASCRIPT_CMD)
+
         tick = time.time()
         try:
             while True:
