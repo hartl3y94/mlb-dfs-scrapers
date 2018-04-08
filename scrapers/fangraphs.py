@@ -13,7 +13,6 @@ sys.path.append('..')
 from util.config import get_config
 
 # Constants for FanGraphs
-FANGRAPHS_FILE = 'FanGraphs Leaderboard.csv'
 JAVASCRIPT_CMD =  "__doPostBack('LeaderBoard1$cmdCSV','')"
 
 TIMEOUT = 600
@@ -67,13 +66,13 @@ class FanGraphsScraper(object):
             chrome_options=options,
             service_args=['--log-path=%s' % log_path])
 
-    def fetch(self, url, column_list, table_name):
+    def fetch(self, url, filename, column_list, table_name):
         """ Main execution. Download data from url, parse
             into .CSV then export to S3
         """
         logging.info("Downloading %s", table_name)
 
-        tmp_file = os.path.join(self.cfg['tmp_dir'], table_name, FANGRAPHS_FILE)
+        tmp_file = os.path.join(self.cfg['tmp_dir'], table_name, filename)
         self.validate_target(tmp_file)
 
         # Create driver
