@@ -48,13 +48,13 @@ class FanGraphsScraper(object):
         display.start()
 
     @staticmethod
-    def create_driver(download_path, log_path, adbock_path=None):
+    def create_driver(download_path, log_path, adblock_path=None):
         """ Create chrome webdriver specifying target directory
             for file downloads, logging directory, and optionally
             specifying path to an Adblock extension
         """
         options = webdriver.ChromeOptions()
-        options.add_experimental_options("prefs", {
+        options.add_experimental_option("prefs", {
             "download.default_directory": os.path.dirname(download_path),
             "download.prompt_for_download": False,
             "download.directory_upgrade": True,
