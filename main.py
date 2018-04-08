@@ -19,7 +19,7 @@ FANGRAPHS_TABLES = {
 if __name__ == '__main__':
     # Configure logging
     FORMAT = '[%(levelname)s %(asctime)s] %(message)s'
-    logging.basicConfig(format=FORMAT, level=logging.DEBUG)
+    logging.basicConfig(format=FORMAT, level=logging.INFO)
 
     # Fangraphs
     scraper = FanGraphsScraper()

@@ -7,4 +7,4 @@ def get_config(path='config.yml'):
         raise Exception("Missing config file %s" % path)
 
     with open(path, 'r') as f:
-        return yaml.load(path)
+        return yaml.load(f)
