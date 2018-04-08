@@ -30,7 +30,7 @@ class FanGraphsScraper(object):
         self.create_display()
 
     @staticmethod
-    def validate_target(file_pah):
+    def validate_target(file_path):
         """ Verify the target directory exists, and
             remove existing file if it exists
         """
