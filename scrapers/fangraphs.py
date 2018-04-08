@@ -1,3 +1,4 @@
+import sys
 import time
 import logging
 from io import StringIO
@@ -6,6 +7,7 @@ import boto3
 from pyvirtualdisplay import Display
 from selenium import webdriver
 
+sys.path.append('..')
 from util.config import get_config
 
 # Constants for FanGraphs
