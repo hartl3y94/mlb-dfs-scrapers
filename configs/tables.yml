@@ -763,3 +763,54 @@ fangraphs:
       - soft_perc
       - med_perc
       - hard_perc
+rotoguru:
+  dfs:
+    url: http://rotoguru1.com/cgi-bin/mlb-dbd-2018.pl
+    columns:
+      - guru_id
+      - mlb_id
+      - name_last_first
+      - name_first_last
+      - p_h
+      - hand
+      - game_date
+      - team
+      - oppt
+      - h_a
+      - game_num
+      - game_id
+      - game_time
+      - team_score
+      - oppt_score
+      - home_ump
+      - temp
+      - w_condition
+      - w_speed
+      - w_dir
+      - adi
+      - prior_adi
+      - gs
+      - gp
+      - pos
+      - bat_order
+      - oppt_pitch_hand
+      - oppt_pitch_guru_id
+      - oppt_pitch_mlb_id
+      - oppt_pitch_name
+      - pa
+      - woba_num
+      - ip
+      - w_l_s
+      - qs
+      - fd_points
+      - dk_points
+      - dd_points
+      - yh_points
+      - fd_salary
+      - dk_salary
+      - dd_salary
+      - yh_salary
+      - fd_pos
+      - dk_pos
+      - dd_pos
+      - yh_pos      
