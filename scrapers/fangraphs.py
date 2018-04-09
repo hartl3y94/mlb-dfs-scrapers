@@ -104,13 +104,12 @@ class FanGraphsScraper(object):
         """ Load a DataFrame to S3 bucket as an S3 file
         """
         # Write to csv in memory buffer
-        df['season'] = self.cfg['season']
         csv_buffer = StringIO()
         df.to_csv(csv_buffer, index=False)
 
         # Create S3 interface
         bucket = self.cfg['s3']['bucket']
-        target_file = os.path.join(self.cfg['s3']['data'], table_name + '.csv')
+        target_file = os.path.join(self.cfg['s3']['data'], table_name, table_name + '.csv')
 
         # Load
         logging.info("Loading to S3 bucket %s/%s", bucket, target_file)

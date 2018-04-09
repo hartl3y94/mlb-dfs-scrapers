@@ -1,4 +1,5 @@
 import time
+import random
 import logging
 
 from scrapers.fangraphs import FanGraphsScraper
@@ -9,11 +10,7 @@ def scrape_fangraphs(table_cfg):
     FANGRAPHS_TABLES = table_cfg['fangraphs']
     scraper = FanGraphsScraper()
 
-    count = 0
     for table, info in FANGRAPHS_TABLES.items():
-        count += 1
-        if count == 1:
-            continue
 
         scraper.fetch(
             url=info['url'],
@@ -22,7 +19,7 @@ def scrape_fangraphs(table_cfg):
             column_list=info['columns'],
             table_name=table
         )
-        time.sleep(5)
+        time.sleep(random.randint(2, 8))
 
 
 
