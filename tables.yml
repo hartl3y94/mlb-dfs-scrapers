@@ -350,7 +350,7 @@ fangraphs:
       - med_perc
       - hard_perc
   fg_pitchers:
-    url: http://www.fangraphs.com/leaders.aspx?pos=all&stats=sta&lg=all&qual=0&type=c,47,48,49,50,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,218,219,220,221,222,223&season=%i&month=0&season1=%i&ind=0&team=0&rost=0&age=0&filter=&players=0
+    url: http://www.fangraphs.com/leaders.aspx?pos=all&stats=sta&lg=all&qual=0&type=c,47,48,49,50,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,218,219,220,221,222,223&season=2018&month=0&season1=2018&ind=0&team=0&rost=0&age=0&filter=&players=0
     js_cmd: __doPostBack('LeaderBoard1$cmdCSV','')
     filename: FanGraphs Leaderboard.csv
     columns:
