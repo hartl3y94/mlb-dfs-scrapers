@@ -6,4 +6,4 @@ tmp_dir: /var/data/tmp
 
 s3:
   bucket: mlb-dfs-2018
-  data: data
+  data_dir: data

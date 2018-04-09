@@ -109,7 +109,8 @@ class FanGraphsScraper(object):
 
         # Create S3 interface
         bucket = self.cfg['s3']['bucket']
-        target_file = os.path.join(self.cfg['s3']['data'], table_name, table_name + '.csv')
+        target_file = os.path.join(self.cfg['s3']['data_dir'], table_name, table_name + '.csv')
+        target_file = target_file.replace('fg_', '')
 
         # Load
         logging.info("Loading to S3 bucket %s/%s", bucket, target_file)
