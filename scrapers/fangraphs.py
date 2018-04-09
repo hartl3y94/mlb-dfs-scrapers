@@ -67,7 +67,7 @@ class FanGraphsScraper(object):
         """ Main execution. Download data from url, parse
             into .CSV then export to S3
         """
-        tmp_file = os.path.join(self.cfg['tmp_dir'], table_name, filename)
+        tmp_file = os.path.join(self.cfg['tmp_dir'], filename)
         self.validate_target(tmp_file)
 
         logging.info("Downloading %s to %s", table_name, tmp_file)
@@ -110,7 +110,6 @@ class FanGraphsScraper(object):
         # Create S3 interface
         bucket = self.cfg['s3']['bucket']
         target_file = os.path.join(self.cfg['s3']['data_dir'], table_name, table_name + '.csv')
-        target_file = target_file.replace('fg_', '')
 
         # Load
         logging.info("Loading to S3 bucket %s/%s", bucket, target_file)
