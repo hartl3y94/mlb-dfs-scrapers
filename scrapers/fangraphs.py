@@ -70,10 +70,10 @@ class FanGraphsScraper(object):
         """ Main execution. Download data from url, parse
             into .CSV then export to S3
         """
-        logging.info("Downloading %s", table_name)
-
         tmp_file = os.path.join(self.cfg['tmp_dir'], table_name, filename)
         self.validate_target(tmp_file)
+
+        logging.info("Downloading %s to %s", table_name, tmp_file)
 
         # Create driver
         chrome_path = self.cfg['chrome_log_path']

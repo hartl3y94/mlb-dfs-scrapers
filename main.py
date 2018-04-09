@@ -15,6 +15,7 @@ def scrape_fangraphs(table_cfg):
             column_list=info['columns'],
             table_name=table
         )
+        time.sleep(5)
 
 
 
