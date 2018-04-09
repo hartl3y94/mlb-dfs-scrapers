@@ -9,12 +9,9 @@ import pandas as pd
 from pyvirtualdisplay import Display
 from selenium import webdriver
 
-sys.path.append('..')
 from util.config import get_config
 
-# Constants for FanGraphs
-JAVASCRIPT_CMD =  "__doPostBack('LeaderBoard1$cmdCSV','')"
-
+# Download timeout limit
 TIMEOUT = 600
 
 
@@ -66,7 +63,7 @@ class FanGraphsScraper(object):
             chrome_options=options,
             service_args=['--log-path=%s' % log_path])
 
-    def fetch(self, url, filename, column_list, table_name):
+    def fetch(self, url, js_cmd, filename, column_list, table_name):
         """ Main execution. Download data from url, parse
             into .CSV then export to S3
         """
@@ -82,7 +79,7 @@ class FanGraphsScraper(object):
 
         # Download and wait for file
         driver.get(url)
-        driver.execute_script(JAVASCRIPT_CMD)
+        driver.execute_script(js_cmd)
 
         tick = time.time()
         try:

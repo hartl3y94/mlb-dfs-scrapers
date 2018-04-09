@@ -1,6 +1,7 @@
 fangraphs:
   fg_batters:
     url: http://www.fangraphs.com/leaders.aspx?pos=all&stats=bat&lg=all&qual=0&type=c,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,60,61,62,102,103,104,105,106,107,108,109,110,111,206,207,208,209,210,211&season=2018&month=0&season1=2018&ind=0&team=&rost=&age=&filter=&players=
+    js_cmd: __doPostBack('LeaderBoard1$cmdCSV','')
     filename: FanGraphs Leaderboard.csv
     columns:
       - name
@@ -70,6 +71,7 @@ fangraphs:
       - fg_id
   fg_batters_daily:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=&strgroup=game&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=B&statType=player&autoPt=false&sort=22,1&pg=0
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data.csv
     columns:
       - game_date
@@ -125,6 +127,7 @@ fangraphs:
       - hard_perc
   fg_batters_home:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=7&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=B&statType=player&autoPt=false&sort=22,1&pg=0
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- Home.csv
     columns:
       - season
@@ -180,6 +183,7 @@ fangraphs:
       - hard_perc
   fg_batters_away:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=8&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=B&statType=player&autoPt=false&sort=22,1&pg=0
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- Away.csv
     columns:
       - season
@@ -235,6 +239,7 @@ fangraphs:
       - hard_perc
   fg_batters_lhp:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=1&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=B&statType=player&autoPt=false&sort=22,1&pg=0
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- vs LHP.csv
     columns:
       - season
@@ -290,6 +295,7 @@ fangraphs:
       - hard_perc
   fg_batters_rhp:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=2&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=B&statType=player&autoPt=false&sort=22,1&pg=0
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- vs RHP.csv
     columns:
       - season
@@ -345,6 +351,7 @@ fangraphs:
       - hard_perc
   fg_pitchers:
     url: http://www.fangraphs.com/leaders.aspx?pos=all&stats=sta&lg=all&qual=0&type=c,47,48,49,50,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,218,219,220,221,222,223&season=%i&month=0&season1=%i&ind=0&team=0&rost=0&age=0&filter=&players=0
+    js_cmd: __doPostBack('LeaderBoard1$cmdCSV','')
     filename: FanGraphs Leaderboard.csv
     columns:
       - name
@@ -385,6 +392,7 @@ fangraphs:
       - fg_id
   fg_pitchers_daily:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=&strgroup=game&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=P&statType=player&autoPt=true&sort=19,-1&pg=0
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data.csv
     columns:
       - game_date
@@ -437,6 +445,7 @@ fangraphs:
       - hard_perc
   fg_pitchers_home:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=9&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=P&statType=player&autoPt=false&pg=0&sort=19,-1
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- Home.csv
     columns:
       - season
@@ -489,6 +498,7 @@ fangraphs:
       - hard_perc
   fg_pitchers_away:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=10&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=P&statType=player&autoPt=false&pg=0&sort=19,-1
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- Away.csv
     columns:
       - season
@@ -541,6 +551,7 @@ fangraphs:
       - hard_perc
   fg_pitchers_lhb:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=5&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=P&statType=player&autoPt=false&pg=0&sort=19,-1
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- vs LHH.csv
     columns:
       - season
@@ -593,6 +604,7 @@ fangraphs:
       - hard_perc
   fg_pitchers_rhb:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=6&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=P&statType=player&autoPt=false&pg=0&sort=19,-1
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- vs RHH.csv
     columns:
       - season
@@ -645,6 +657,7 @@ fangraphs:
       - hard_perc
   fg_team_batters_hand_lhp:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=1&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=B&statType=team&autoPt=false&sort=21,1&pg=0
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- vs LHP.csv
     columns:
       - season
@@ -698,6 +711,7 @@ fangraphs:
       - hard_perc
   fg_team_batters_hand_rhp:
     url: http://www.fangraphs.com/leaderssplits.aspx?splitArr=2&strgroup=season&statgroup=1&startDate=2018-03-01&endDate=2018-11-01&filter=&position=B&statType=team&autoPt=false&sort=21,1&pg=0
+    js_cmd: __doPostBack('SplitsLeaderboard$cmdCSV','')
     filename: FanGraphs Splits Leaderboard Data -- vs RHP.csv
     columns:
       - season
