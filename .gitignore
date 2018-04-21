@@ -1,2 +1,5 @@
 *.pyc
 .DS_Store
+
+# Ignore account-login config files
+configs/accounts.yml

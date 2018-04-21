@@ -3,6 +3,7 @@ import random
 import logging
 
 from scrapers.fangraphs import FanGraphsScraper
+from scrapers.rotoguru import RotoGuruScraper
 from util.config import get_config
 
 def scrape_fangraphs(table_cfg):
@@ -11,7 +12,6 @@ def scrape_fangraphs(table_cfg):
     scraper = FanGraphsScraper()
 
     for table, info in FANGRAPHS_TABLES.items():
-
         scraper.fetch(
             url=info['url'],
             js_cmd=info['js_cmd'],
@@ -21,7 +21,19 @@ def scrape_fangraphs(table_cfg):
         )
         time.sleep(random.randint(2, 8))
 
+def scrape_rotoguru(table_cfg):
+    """ Run rotoguru scraper using account login """
+    ROTO_TABLES = table_cfg['rotoguru']
+    scraper = RotoGuruScraper()
 
+    LOGIN = get_config('accounts.yml')['rotoguru']
+
+    for table, info in ROTO_TABLES.items():
+        scraper.fetch(
+            url=info['url'] % (LOGIN['username'], LOGIN['password']),
+            column_list=info['columns'],
+            table_name=table
+        )
 
 if __name__ == '__main__':
     # Configure logging
@@ -33,3 +45,6 @@ if __name__ == '__main__':
 
     # Fangraphs
     scrape_fangraphs(TABLE_CFG)
+
+    # Rotoguru
+    scrape_rotoguru(TABLE_CFG)

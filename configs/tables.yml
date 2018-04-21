@@ -765,7 +765,7 @@ fangraphs:
       - hard_perc
 rotoguru:
   dfs:
-    url: http://rotoguru1.com/cgi-bin/mlb-dbd-2018.pl
+    url: http://rotoguru1.com/cgi-bin/mlb-dbd-2018.pl?forcelogin=1&user=%s&key=%s
     columns:
       - guru_id
       - mlb_id

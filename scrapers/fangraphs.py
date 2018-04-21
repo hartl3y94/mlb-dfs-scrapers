@@ -2,40 +2,26 @@ import os
 import sys
 import time
 import logging
-from io import StringIO
 
-import boto3
 import pandas as pd
 from pyvirtualdisplay import Display
 from selenium import webdriver
 
-from util.config import get_config
+from scrapers.base import BaseScraper
 
 # Download timeout limit
 TIMEOUT = 600
 
-
-class FanGraphsScraper(object):
+class FanGraphsScraper(BaseScraper):
     """ This class utilizes the selenium webdriver
         along with chromium webdriver to directly
         download data from javascript calls
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self):
         # Default filename upon downloading a file
-        self.cfg = get_config()
+        super(FanGraphsScraper, self).__init__()
         self.create_display()
-
-    @staticmethod
-    def validate_target(file_path):
-        """ Verify the target directory exists, and
-            remove existing file if it exists
-        """
-        FULL_PATH = os.path.realpath(file_path)
-        if not os.path.exists(os.path.dirname(FULL_PATH)):
-            os.makedirs(os.path.dirname(FULL_PATH))
-        if os.path.exists(FULL_PATH):
-            os.remove(FULL_PATH)
 
     @staticmethod
     def create_display():
@@ -64,8 +50,9 @@ class FanGraphsScraper(object):
             service_args=['--log-path=%s' % log_path])
 
     def fetch(self, url, js_cmd, filename, column_list, table_name):
-        """ Main execution. Download data from url, parse
-            into .CSV then export to S3
+        """ Download data from url by executing a javascript command
+            by saving to local file via selenium. Load that file into
+            memory, clean, then dump in s3 bucket
         """
         tmp_file = os.path.join(self.cfg['tmp_dir'], filename)
         self.validate_target(tmp_file)
@@ -99,20 +86,3 @@ class FanGraphsScraper(object):
 
         # Transfer to S3
         self.load_to_s3(df, table_name)
-
-    def load_to_s3(self, df, table_name):
-        """ Load a DataFrame to S3 bucket as an S3 file
-        """
-        # Write to csv in memory buffer
-        csv_buffer = StringIO()
-        df.to_csv(csv_buffer, index=False)
-
-        # Create S3 interface
-        bucket = self.cfg['s3']['bucket']
-        target_file = os.path.join(self.cfg['s3']['data_dir'], table_name, table_name + '.csv')
-
-        # Load
-        logging.info("Loading to S3 bucket %s/%s", bucket, target_file)
-
-        s3 = boto3.resource('s3')
-        s3.Object(bucket, target_file).put(Body=csv_buffer.getvalue())
