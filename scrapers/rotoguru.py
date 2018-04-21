@@ -1,4 +1,3 @@
-import os
 import logging
 from io import StringIO
 from urllib.request import urlopen

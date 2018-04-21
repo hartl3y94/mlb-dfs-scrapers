@@ -838,3 +838,6 @@ statcast:
       - ev95plus
       - ev95percent
       - rowId
+weather:
+  weather_today:
+    url: http://dailybaseballdata.com/cgi-bin/weather.pl

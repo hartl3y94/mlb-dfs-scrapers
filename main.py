@@ -5,6 +5,7 @@ import logging
 from scrapers.fangraphs import FanGraphsScraper
 from scrapers.rotoguru import RotoGuruScraper
 from scrapers.statcast import StatcastScraper
+from scrapers.weather import WeatherScraper
 from util.config import get_config
 
 def scrape_fangraphs(table_cfg):
@@ -48,6 +49,17 @@ def scrape_statcast(table_cfg):
             table_name=table
         )
 
+def scrape_weather(table_cfg):
+    """ Run weather scraper """
+    WEATHER_TABLES = table_cfg['weather']
+    scraper = WeatherScraper()
+
+    for table, info in WEATHER_TABLES.items():
+        scraper.fetch(
+            url=info['url'],
+            table_name=table
+        )
+
 if __name__ == '__main__':
     # Configure logging
     FORMAT = '[%(levelname)s %(asctime)s] %(message)s'
@@ -64,3 +76,6 @@ if __name__ == '__main__':
 
     # Statcast
     scrape_statcast(TABLE_CFG)
+
+    # Weather
+    scrape_weather(TABLE_CFG)
