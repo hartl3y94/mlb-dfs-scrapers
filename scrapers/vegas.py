@@ -18,7 +18,7 @@ class VegasScraper(BaseScraper):
         logging.info("Downloading %s from %s", table_name, url)
 
         # url -> string
-        body = urlopen(url).read().decide('latin1')
+        body = urlopen(url).read().decode('latin1')
 
         # string -> dataframe
         df = self.parse_js(body)

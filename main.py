@@ -81,16 +81,16 @@ if __name__ == '__main__':
     TABLE_CFG = get_config('tables.yml')
 
     # Fangraphs
-    scrape_fangraphs(TABLE_CFG)
+    #scrape_fangraphs(TABLE_CFG)
 
     # Rotoguru
-    scrape_rotoguru(TABLE_CFG)
+    #scrape_rotoguru(TABLE_CFG)
 
     # Statcast
-    scrape_statcast(TABLE_CFG)
+    #scrape_statcast(TABLE_CFG)
 
     # Weather
-    scrape_weather(TABLE_CFG)
+    #scrape_weather(TABLE_CFG)
 
     # Vegas
     scrape_vegas(TABLE_CFG)
