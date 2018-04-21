@@ -51,10 +51,10 @@ class BaseScraper(object):
         # This line can be changed to include timestamps
         # in the file name if you wish to store file versions
         # using a hive structure. For now overwriting one file is fine
-        target_file = os.path.join(DIR, table_name, table_name + '.csv')
+        TARGET_FILE = os.path.join(DIR, table_name, table_name + '.csv')
 
         # Load
-        logging.info("Loading to S3 bucket %s/%s", bucket, target_file)
+        logging.info("Loading to S3 bucket %s/%s", BUCKET, TARGET_FILE)
 
         s3 = boto3.resource('s3')
-        s3.Object(bucket, target_file).put(Body=csv_buffer.getvalue())
+        s3.Object(BUCKET, TARGET_FILE).put(Body=csv_buffer.getvalue())
