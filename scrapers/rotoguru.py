@@ -1,7 +1,7 @@
 import os
-import urllib2
 import logging
 from io import StringIO
+from urllib.request import urlopen
 
 import pandas as pd
 
@@ -9,7 +9,7 @@ from scrapers.base import BaseScraper
 
 
 class RotoGuruScraper(BaseScraper):
-    """ This class uses simple urllib2 request to
+    """ This class uses simple urllib request to
         download raw text from rotoguru of daily
         fantasy stats
     """
@@ -21,7 +21,7 @@ class RotoGuruScraper(BaseScraper):
         logging.info("Downloading %s from url", table_name)
 
         # GET -> memory buffer
-        reponse = urllib2.urlopen(url)
+        reponse = urlopen(url)
         text = reponse.read()
         data = StringIO(text[:text.find('\n*-ADI')])
 
