@@ -23,7 +23,8 @@ class RotoGuruScraper(BaseScraper):
         # GET -> memory buffer
         reponse = urlopen(url)
         text = reponse.read()
-        data = StringIO(text[:text.find('\n*-ADI')])
+        text = text[:text.find('\n*-ADI')]
+        data = StringIO(text)
 
         # memory buffer -> dataframe
         df = pd.read_csv(data, sep=":", index_col=False)
