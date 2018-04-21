@@ -23,7 +23,7 @@ class WeatherScraper(BaseScraper):
         body = urlopen(url).read().decode('latin1')
 
         # string -> dataframe
-        df = parse_weather(body)
+        df = self.parse_weather(body)
 
         # -> s3
         self.load_to_s3(df, table_name)
@@ -41,8 +41,7 @@ class WeatherScraper(BaseScraper):
         a = txt.find(sub)
         return txt[:a].strip(), txt[a+len(sub):]
 
-    @staticmethod
-    def make_list(txt, start, end=''):
+    def make_list(self, txt, start, end=''):
         """ Make a list from HTML table row """
         _, txt = self.split(txt, start)
         _, txt = self.split(txt, '</td>')
@@ -68,8 +67,7 @@ class WeatherScraper(BaseScraper):
         tmp['w_condition'] = 'Roof'
         return tmp
 
-    @staticmethod
-    def parse_weather(text, df=pd.DataFrame()):
+    def parse_weather(self, text, df=pd.DataFrame()):
         """ Recursivley parse HTML table into dataframe """
         if text.find('target="_blank" class="weather">') == -1:
             return df
