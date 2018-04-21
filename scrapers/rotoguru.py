@@ -21,7 +21,7 @@ class RotoGuruScraper(BaseScraper):
         logging.info("Downloading %s from url", table_name)
 
         # GET -> memory buffer
-        reponse = urlopen(url).read().decode('latin1')
+        response = urlopen(url).read().decode('latin1')
         data = StringIO(response[:response.find('\n*-ADI')])
 
         # memory buffer -> dataframe
