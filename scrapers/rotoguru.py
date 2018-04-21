@@ -22,7 +22,7 @@ class RotoGuruScraper(BaseScraper):
 
         # GET -> memory buffer
         reponse = urlopen(url)
-        text = reponse.read()
+        text = reponse.decode('utf-8')
         text = text[:text.find('\n*-ADI')]
         data = StringIO(text)
 
