@@ -841,3 +841,6 @@ statcast:
 weather:
   weather_today:
     url: http://dailybaseballdata.com/cgi-bin/weather.pl
+vegas:
+  vegas_lines:
+    url: https://rotogrinders.com/schedules/mlb
