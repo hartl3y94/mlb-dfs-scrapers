@@ -45,7 +45,7 @@ class BaseScraper(object):
         df.to_csv(csv_buffer, index=False)
 
         # Create s3 interface from config
-        BUCKET = self.cfc['s3']['bucket']
+        BUCKET = self.cfg['s3']['bucket']
         DIR = self.cfg['s3']['data_dir']
 
         # This line can be changed to include timestamps
