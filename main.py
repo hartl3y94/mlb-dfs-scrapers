@@ -44,7 +44,7 @@ if __name__ == '__main__':
     TABLE_CFG = get_config('tables.yml')
 
     # Fangraphs
-    scrape_fangraphs(TABLE_CFG)
+   # scrape_fangraphs(TABLE_CFG)
 
     # Rotoguru
     scrape_rotoguru(TABLE_CFG)
