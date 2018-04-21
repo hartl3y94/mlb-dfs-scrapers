@@ -6,6 +6,7 @@ import pandas as pd
 
 from scrapers.base import BaseScraper
 
+pd.set_option('chained_assignment', None)
 
 class DailyFantasyScraper(BaseScraper):
     """ This class uses urllib request to parse flat data
@@ -29,7 +30,7 @@ class DailyFantasyScraper(BaseScraper):
         text = StringIO(text)
 
         # memory buffer -> dataframe
-        df = pd.read_csv('text', sep=";", index_col=False)
+        df = pd.read_csv(text, sep=";", index_col=False)
         df.columns = column_list
         df['p_h'] = self.parse_pos(df['p_h'])
 
