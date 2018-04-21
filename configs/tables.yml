@@ -813,4 +813,28 @@ rotoguru:
       - fd_pos
       - dk_pos
       - dd_pos
-      - yh_pos      
+      - yh_pos
+statcast:
+  statcast_batters:
+    url: https://baseballsavant.mlb.com/statcast_leaderboard?year=2018&abs=0&player_type=resp_batter_id
+    columns:
+      - name
+      - attempts
+      - max_hit_speed
+      - min_hit_speed
+      - avg_hit_speed
+      - fbld
+      - gb
+      - max_distance
+      - avg_distance
+      - avg_hr_distance
+      - mlb_id
+      - player_type
+      - season
+      - resp_batter_id
+      - barrels
+      - brl_percent
+      - brl_pa
+      - ev95plus
+      - ev95percent
+      - rowId
