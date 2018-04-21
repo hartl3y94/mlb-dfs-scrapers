@@ -814,6 +814,61 @@ rotoguru:
       - dk_pos
       - dd_pos
       - yh_pos
+daily_fantasy:
+  draftkings:
+    url: http://rotoguru1.com/cgi-bin/stats.cgi?pos=0&sort=4&game=k&colA=0&daypt=0&denom=1&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c&forcelogin=1&user=%s&key=%s
+    columns:
+      - guru_id
+      - p_h
+      - name
+      - team
+      - salary
+      - salary_change
+      - points
+      - gs
+      - gp
+      - active
+      - pts_game
+      - pts_g_sal
+      - pts_g_alt
+      - last
+      - days_ago
+      - mlb_id
+      - espn_id
+      - yahoo_id
+      - bats
+      - throws
+      - h_a
+      - oppt
+      - oppt_hand
+      - game_title
+  fanduels:
+    url: http://rotoguru1.com/cgi-bin/stats.cgi?pos=0&sort=4&game=d&colA=0&daypt=0&denom=1&xavg=0&inact=0&maxprc=99999&sched=1&starters=1&hithand=0&numlist=c&forcelogin=1&user=%s&key=%s
+    columns:
+      - guru_id
+      - p_h
+      - name
+      - team
+      - salary
+      - salary_change
+      - points
+      - gs
+      - gp
+      - active
+      - pts_game
+      - pts_g_sal
+      - pts_g_alt
+      - last
+      - days_ago
+      - mlb_id
+      - espn_id
+      - yahoo_id
+      - bats
+      - throws
+      - h_a
+      - oppt
+      - oppt_hand
+      - game_title
 statcast:
   statcast_batters:
     url: https://baseballsavant.mlb.com/statcast_leaderboard?year=2018&abs=0&player_type=resp_batter_id

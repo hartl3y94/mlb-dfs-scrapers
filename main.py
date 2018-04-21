@@ -7,6 +7,7 @@ from scrapers.rotoguru import RotoGuruScraper
 from scrapers.statcast import StatcastScraper
 from scrapers.weather import WeatherScraper
 from scrapers.vegas import VegasScraper
+from scrapers.daily_fantasy import DailyFantasyScraper
 from util.config import get_config
 
 def scrape_fangraphs(table_cfg):
@@ -72,6 +73,18 @@ def scrape_vegas(table_cfg):
             table_name=table
         )
 
+def scrape_daily_fantasy(table_cfg):
+    """ Run daily fantasy services scraper """
+    FANTASY_TABLES = table_cfg['daily_fantasy']
+    scraper = DailyFantasyScraper()
+
+    for table, info in FANTASY_TABLES.items():
+        scraper.fetch(
+            url=info['url'],
+            column_list=info['columns'],
+            table_name=table
+        )
+
 if __name__ == '__main__':
     # Configure logging
     FORMAT = '[%(levelname)s %(asctime)s] %(message)s'
@@ -93,4 +106,7 @@ if __name__ == '__main__':
     #scrape_weather(TABLE_CFG)
 
     # Vegas
-    scrape_vegas(TABLE_CFG)
+    #scrape_vegas(TABLE_CFG)
+
+    # Draftkings/Fanduels
+    scrape_daily_fantasy(TABLE_CFG)
