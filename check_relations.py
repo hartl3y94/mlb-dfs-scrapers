@@ -1,8 +1,9 @@
+import os
 import logging
 from io import StringIO
 import boto3
 import pandas as pd
-import numppy as np
+import numpy as np
 
 from util.config import get_config
 
@@ -33,6 +34,9 @@ if __name__ == '__main__':
     # Configure logging
     FORMAT = '[%(levelname)s %(asctime)s] %(message)s'
     logging.basicConfig(format=FORMAT, level=logging.INFO)
+
+    # Get data
+    data = load_data()
 
     # Join tables to player_link
     dfs = (
