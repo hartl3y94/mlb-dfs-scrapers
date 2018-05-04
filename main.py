@@ -89,6 +89,9 @@ def scrape_daily_fantasy(table_cfg):
 if __name__ == '__main__':
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
+    # Add path to environ
+    os.environ['PATH'] += os.pathsep + '/usr/local/bin'
+
     # Configure logging
     FORMAT = '[%(levelname)s %(asctime)s] %(message)s'
     logging.basicConfig(format=FORMAT, level=logging.INFO)
