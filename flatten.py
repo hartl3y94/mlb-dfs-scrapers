@@ -230,7 +230,7 @@ def flatten_batters(data):
     ]
 
     # Remove uninteresting columns
-    df = df[all_features + target_cols + id_cols]
+    df = df[id_cols + all_features + target_cols]
 
     # Clean all feature columns
     for col in all_features:
@@ -245,6 +245,9 @@ def flatten_batters(data):
     for col in target_cols:
         train[col] = to_numeric(train[col])
         valid.drop(col, 1)
+
+    logging.info("Features: %d", len(all_features))
+    logging.info("Training examples: %d", train.shape[0])
 
     return train, valid
 
