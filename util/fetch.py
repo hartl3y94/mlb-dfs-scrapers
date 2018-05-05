@@ -22,12 +22,14 @@ def fetch_all_csv():
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(cfg['s3']['bucket'])
 
+    logging.info("Fetching csv files from %s", cfg['s3']['bucket'])
+
     # Loop through and append all csv files as dataframe in dict
     data = dict()
     for obj in bucket.objects.all():
         if '.csv' in obj.key:
             table = os.path.basename(obj.key)[:-4]
-            logging.info(table)
+            logging.info('  ' + table)
 
             # Load string-typed data into memory buffer
             mem_buffer = StringIO(obj.get()['Body'].read().decode('latin1'))
@@ -38,8 +40,7 @@ def fetch_all_csv():
     return data
 
 def write_output(df, name):
-    """ Write a table to output folder in S3 bucket, indexed by date
-    """
+    """ Write a table to output folder in S3 bucket, indexed by date """
     cfg = get_config()
 
     # Target S3 bucket
@@ -58,3 +59,24 @@ def write_output(df, name):
 
     s3 = boto3.resource('s3')
     s3.Object(bucket, target_file).put(Body=mem_buffer.getvalue())
+
+def get_todays_output(name):
+    """ Get output file matching name for today """
+    cfg = get_config()
+
+    # Target s3 bucket
+    bucket = cfg['s3']['bucket']
+    dirname = cfg['s3']['output_dir']
+
+    # Target filepath
+    today = datetime.now().strftime("%Y%m%d")
+    target_file = os.path.join(dirname, name, name + today + '.csv')
+
+    logging.info("Fetching from S3 %s/%s", bucket, target_file)
+
+    # Load into memory buffer
+    s3 = boto3.resource('s3')
+    mem_buffer = StringIO(s3.Object(bucket, target_file).get()['Body'].read().decode('latin1'))
+
+    # Return as dataframe
+    return pd.read_csv(mem_buffer)
