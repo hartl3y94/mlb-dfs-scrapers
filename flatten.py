@@ -4,6 +4,7 @@
     datasets into a single usable source for model ingestion
 """
 from __future__ import division
+import logging
 from datetime import datetime
 import pandas as pd
 import numpy as np
@@ -156,8 +157,8 @@ def flatten_batters(data):
 
         # Park factors by batter hand
         .merge(park_factor, left_on='team_park', right_on='team_pf', how='left')
-        .assign(side=lambda x: x['side'].str[:1])
-        .query('side == hand')
+        .assign(side_pf=lambda x: x['side_pf'].str[:1])
+        .query('side_pf == hand')
 
         # Get pitcher stats vs batters of the same hand
         .merge(fg_pitchers_hand, left_on=['fg_id_pl', 'hand'],
@@ -178,7 +179,7 @@ def flatten_batters(data):
         .query('game_date == game_date_bd')
 
         # Merge on today's weather
-        .merge(weather_today, left_on='team_weather', right_on='team_weather_wt', how='left')
+        .merge(weather_today, left_on='team_weather', right_on='team_wt', how='left')
     )
     logging.info("Datasets merged, rows: %d", df.shape[0])
 
