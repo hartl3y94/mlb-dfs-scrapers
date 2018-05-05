@@ -257,6 +257,8 @@ def flatten_batters(data):
 
 
 if __name__ == '__main__':
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    
     FORMAT = '[%(levelname)s %(asctime)s] %(message)s'
     logging.basicConfig(format=FORMAT, level=logging.INFO)
 
