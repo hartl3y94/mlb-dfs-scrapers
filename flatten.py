@@ -165,12 +165,9 @@ def flatten_batters(data):
         .merge(fg_pitchers_hand, left_on=['fg_id_pl', 'hand'],
                right_on=['fg_id_ph', 'oppt_bat_hand_ph'], how='left')
         
-        # Parse date columns
+        # Parse date column
         .assign(game_date=lambda x:
             pd.to_datetime(x['game_date'].astype(str), format="%Y%m%d").dt.strftime('%Y-%m-%d')
-        )
-        .assign(game_date_bd=lambda x:
-            pd.to_datetime(x['game_date_bd'], format='%Y-%m-%d').dt.strftime('%Y-%m-%d')
         )
 
         # Merge on today's weather
@@ -238,6 +235,9 @@ def flatten_batters(data):
     train = (
         train
         .merge(fg_batters_daily, left_on='fg_id', right_on='fg_id_bd', how='left')
+        .assign(game_date_bd=lambda x:
+            pd.to_datetime(x['game_date_bd'], format='%Y-%m-%d').dt.strftime('%Y-%m-%d')
+        )
         .query('game_date == game_date_bd')
     )
 
