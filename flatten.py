@@ -247,8 +247,8 @@ def flatten_batters(data):
         valid[col] = np.nan
 
     # Only keep interesting columns
-    train = train[id_cols + all_features + target_cols]
-    valid = valid[id_cols + all_features + target_cols]
+    train = train[id_cols + all_features + target_cols].reset_index(drop=True)
+    valid = valid[id_cols + all_features + target_cols].reset_index(drop=True)
 
     logging.info("Features: %d", len(all_features))
     logging.info("Training examples: %d", train.shape[0])
@@ -256,27 +256,16 @@ def flatten_batters(data):
     return train, valid
 
 
+if __name__ == '__main__':
+    FORMAT = '[%(levelname)s %(asctime)s] %(message)s'
+    logging.basicConfig(format=FORMAT, level=logging.INFO)
 
+    # Fetch data
+    data = fetch.fetch_all_csv()
 
+    # Flatten batter data
+    train, valid = flatten_batters(data)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
+    # Write to S3
+    fetch.write_output(train, 'batters_train')
+    fetch.write_output(valid, 'batters_valid')
