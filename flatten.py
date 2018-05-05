@@ -220,8 +220,14 @@ def flatten_batters(data):
         'w_speed', 'w_dir', 'prior_adi'
     ]
 
-    target_cols = ['one_b', 'two_b', 'three_b', 'hr', 'rbi', 'r', 'bb', 'hbp', 'sb', 'dk_points', 'fd_points']
-    id_cols =['name_first_last', 'team', 'game_date', 'dk_pos', 'fd_pos', 'dk_salary', 'fd_salary']
+    target_cols = [
+        'one_b_bd', 'two_b_bd', 'three_b_bd', 'hr_bd', 'rbi_bd', 'r_bd', 'bb_bd', 'hbp_bd',
+        'sb_bd', 'dk_points', 'fd_points'
+    ]
+
+    id_cols = [
+        'name_first_last', 'team', 'game_date', 'dk_pos', 'fd_pos', 'dk_salary', 'fd_salary'
+    ]
 
     # Remove uninteresting columns
     df = df[all_features + target_cols + id_cols]
