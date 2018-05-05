@@ -32,6 +32,6 @@ def fetch_all_csv():
             mem_buffer = StringIO(obj.get()['Body'].read().decode('latin1'))
 
             # Parse to dataframe
-            data['table'] = pd.read_csv(mem_buffer)
+            data[table] = pd.read_csv(mem_buffer)
 
     return data
