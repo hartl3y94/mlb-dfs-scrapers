@@ -108,6 +108,7 @@ def flatten_batters(data):
 
     #######################################################
     # Merge tables together
+    logging.info("Merging tables")
 
     df = (
         # Use dfs as base table
@@ -163,10 +164,7 @@ def flatten_batters(data):
         # Get pitcher stats vs batters of the same hand
         .merge(fg_pitchers_hand, left_on=['fg_id_pl', 'hand'],
                right_on=['fg_id_ph', 'oppt_bat_hand_ph'], how='left')
-
-        # Daily stats for model training targets
-        .merge(fg_batters_daily, left_on='fg_id', right_on='fg_id_bd', how='left')
-
+        
         # Parse date columns
         .assign(game_date=lambda x:
             pd.to_datetime(x['game_date'].astype(str), format="%Y%m%d").dt.strftime('%Y-%m-%d')
@@ -174,9 +172,6 @@ def flatten_batters(data):
         .assign(game_date_bd=lambda x:
             pd.to_datetime(x['game_date_bd'], format='%Y-%m-%d').dt.strftime('%Y-%m-%d')
         )
-
-        # Only rows where game_date and game_date_bd match
-        .query('game_date == game_date_bd')
 
         # Merge on today's weather
         .merge(weather_today, left_on='team_weather', right_on='team_wt', how='left')
@@ -186,6 +181,7 @@ def flatten_batters(data):
     
     #######################################################
     # Feature filtering, cleaning, and imputing
+    logging.info("Cleaning feature columns")
 
     # Assign weather columns for date < today and date == today
     for col in ['w_speed', 'w_dir', 'temp']:
@@ -229,9 +225,6 @@ def flatten_batters(data):
         'name_first_last', 'team', 'game_date', 'dk_pos', 'fd_pos', 'dk_salary', 'fd_salary'
     ]
 
-    # Remove uninteresting columns
-    df = df[id_cols + all_features + target_cols]
-
     # Clean all feature columns
     for col in all_features:
         df[col] = to_numeric(df[col])
@@ -241,10 +234,21 @@ def flatten_batters(data):
     valid = df[df['game_date'] == TODAY]
     del df
 
+    # Append on batters daily target columns
+    train = (
+        train
+        .merge(fg_batters_daily, left_on='fg_id', right_on='fg_id_bd', how='left')
+        .query('game_date == game_date_bd')
+    )
+
     # Clean regression targets for training data, remove from valid
     for col in target_cols:
         train[col] = to_numeric(train[col])
-        valid.drop(col, 1)
+        valid[col] = np.nan
+
+    # Only keep interesting columns
+    train = train[id_cols + all_features + target_cols]
+    valid = valid[id_cols + all_features + target_cols]
 
     logging.info("Features: %d", len(all_features))
     logging.info("Training examples: %d", train.shape[0])
