@@ -31,6 +31,7 @@ def to_numeric(arr):
 
 def parse_wdir(arr):
     """ Parse the wind direction column to -1, 0, 1 """
+    pd.set_option('chained_assignment', None)
     pos = ['Out to RF','Out to CF','Out to LF']
     neg = ['In from LF','In from RF','In from CF']
     arr[~arr.isin(pos + neg)] = 0
