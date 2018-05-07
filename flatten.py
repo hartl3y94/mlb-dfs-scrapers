@@ -4,6 +4,7 @@
     datasets into a single usable source for model ingestion
 """
 from __future__ import division
+import os
 import logging
 from datetime import datetime
 import pandas as pd
