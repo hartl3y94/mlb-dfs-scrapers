@@ -27,6 +27,8 @@ def fetch_all_csv():
     # Loop through and append all csv files as dataframe in dict
     data = dict()
     for obj in bucket.objects.all():
+        if 'output' in obj.key:
+            continue
         if '.csv' in obj.key:
             table = os.path.basename(obj.key)[:-4]
             logging.info('  ' + table)
