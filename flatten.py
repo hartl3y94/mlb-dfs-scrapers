@@ -29,6 +29,16 @@ def to_numeric(arr):
     return arr.fillna(avg)
 
 
+def parse_wdir(arr):
+    """ Parse the wind direction column to -1, 0, 1 """
+    pos = ['Out to RF','Out to CF','Out to LF']
+    neg = ['In from LF','In from RF','In from CF']
+    x[~x.isin(pos + neg)] = 0
+    x[x.isin(pos)] = 1
+    x[x.isin(neg)] = -1
+    return x.astype(float)
+
+
 def flatten_batters(data):
     """ Main execution of this script, the code
         isn't very clean or structured but this just needs
@@ -188,6 +198,9 @@ def flatten_batters(data):
             df[col + '_wt'],
             df[col]
         )
+
+    # Parse w_dir column
+    df['w_dir'] = parse_wdir(df['w_dir'])
 
     # List of feature columns we are interested in keeping
     all_features = [
