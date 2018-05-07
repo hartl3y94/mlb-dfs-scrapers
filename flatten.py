@@ -33,10 +33,10 @@ def parse_wdir(arr):
     """ Parse the wind direction column to -1, 0, 1 """
     pos = ['Out to RF','Out to CF','Out to LF']
     neg = ['In from LF','In from RF','In from CF']
-    x[~x.isin(pos + neg)] = 0
-    x[x.isin(pos)] = 1
-    x[x.isin(neg)] = -1
-    return x.astype(float)
+    arr[~arr.isin(pos + neg)] = 0
+    arr[arr.isin(pos)] = 1
+    arr[arr.isin(neg)] = -1
+    return arr.astype(float)
 
 
 def flatten_batters(data):
